@@ -54,8 +54,134 @@ left=3cm, right=1.5cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm]{geometry}
 \date{\number\year}
 \maketitle
 \tableofcontents
-\input{1}
-\input{2}
-\input{3}
+
+\chapter{Общая часть}
+
+\begin{itemize}
+\item Что такое периодограмма?
+\item Что такое тренд (разные варианты определения)? Как выглядит периодограмма тренда?
+\item Что такое периодическая компонента? Как выглядит ее периодограмма?
+\item Что такое шум? Как выглядит его периодограмма?
+\item Периодограмма как оценка спектральной плотности. Распределение значений. Сглаживание периодограммы.
+\item Чем отличается сглаживание от выделения тренда?
+\item Что такое линейный фильтр, импульсная характеристика? Причинный фильтр, FIR.
+\item Характеристики фильтра через его воздействие на $\cos(2 \pi \omega n)$ (или на комплексную экспоненту) – АЧХ, ФЧХ.
+\item AЧХ фильтра скользящего среднего, зависимость от длины окна.
+\item АЧХ фильтра перехода к разностям (дифференцирования).
+\item Что такое запаздывание и отчего оно может возникать (на примере скользящего среднего)?
+\item Смещение при сглаживании фильтром скользящего среднего. Роль второй производной.
+\item Фильтр для подавления шума. Роль нормы коэффициентов фильтра.
+\item Как связаны периодограммы ряда до применения фильтра и после применения фильтра?
+\item Модели данных – аддитивная и мультипликативная.
+\item Методы стабилизации дисперсии в разных моделях (логарифмирование, извлечение квадратного корня, …).
+\item Выделение тренда у ряда с сезонностью (выбор длины окна в скользящем среднем).
+\item Переход к разностям – плюсы и минусы (устранение тренда, превращение ряда в стационарный, усиление вклада высоких частот).
+\item Скользящее среднее и скользящая медиана.
+\item Растекание частоты в периодограмме. Подправка длины ряда для ее устранения.
+\item  Выделение тренда с помощью параметрической регрессии.
+\item Выделение тренда с помощью метода LOESS
+\item Нахождение огибающей периодического ряда с помощью выделения тренда.
+\item Оценивание поведения дисперсии шума с помощью выделения тренда.
+\item Метод разложения Classical seasonal decomposition.
+\item Метод разложения STL.
+\end{itemize}
+
+\include{ch1/ch1-sect01-periodogram}
+\include{ch1/ch1-sect02-trend}
+\include{ch1/ch1-sect03-seasonal}
+\include{ch1/ch1-sect04-noise}
+\include{ch1/ch1-sect05-pgsmooth}
+\include{ch1/ch1-sect06-trextsmooth}
+\include{ch1/ch1-sect07-linfilter}
+\include{ch1/ch1-sect08-filtcharcos}
+\include{ch1/ch1-sect09-acfrollmean}
+\include{ch1/ch1-sect10-acfdiff}
+\include{ch1/ch1-sect11-tsdelay}
+\include{ch1/ch1-sect12-tsoffset}
+\include{ch1/ch1-sect13-denoiseflt}
+\include{ch1/ch1-sect14-pgfilt}
+\include{ch1/ch1-sect15-multaddmodel}
+\include{ch1/ch1-sect16-varstabilizing}
+\include{ch1/ch1-sect17-trextseason}
+\include{ch1/ch1-sect18-fltdiff}
+\include{ch1/ch1-sect19-rollmeanmed}
+\include{ch1/ch1-sect20-frqleakage}
+\include{ch1/ch1-sect21-trregr}
+\include{ch1/ch1-sect22-trloess}
+\include{ch1/ch1-sect23-trenvelope}
+\include{ch1/ch1-sect24-trvar}
+\include{ch1/ch1-sect25-decompose}
+\include{ch1/ch1-sect26-stl}
+
+\chapter{Метод SSA}
+
+\begin{itemize}
+\item Как выбирать L.
+\item Последовательный SSA.
+\item Слабая и сильная разделимость.
+\item Компоненты смешались. Как понять, это слабая или сильная разделимость?
+\item Как идентифицировать тренд?
+\item Как идентифицировать периодичность?
+\item Использование матрицы взвешенных корреляций.
+\item Элементарные восстановленные компоненты.
+\item Корни хар.полинома, сигнальные и лишние.
+\item Оценка параметров в SSA.
+\item Прогноз.
+\item Доверительные интервалы.
+\item Автоматическая идентификация.
+\item Заполнение пропусков.
+\item Теплицев SSA для стац. рядов.
+\item Projection SSA, выделение лин.тренда.
+\item Улучшение разделимости с помощью вращения в выбранном подпространстве: Iterative O-SSA (слабая и сильная разделимость) и DerivSSA (сильная разделимость).
+\item Аппроксимация Cadzow SSA.
+\item MSSA для анализа многомерных временных рядов. Когда лучше анализировать ряды вместе, а когда отдельно?
+\item 2D-SSA для разложения изображения.
+\end{itemize}
+
+\include{ch2/ch2-sect01-winlen.tex}
+\include{ch2/ch2-sect02-seqssa}
+\include{ch2/ch2-sect03-convergence}
+\include{ch2/ch2-sect04-compmessconv}
+\include{ch2/ch2-sect05-trendid}
+\include{ch2/ch2-sect06-seasonid}
+\include{ch2/ch2-sect07-wcor}
+\include{ch2/ch2-sect08-basiccomp}
+\include{ch2/ch2-sect09-charpoly}
+\include{ch2/ch2-sect10-paramest}
+\include{ch2/ch2-sect11-forecast}
+\include{ch2/ch2-sect12-confint}
+\include{ch2/ch2-sect13-autoid}
+\include{ch2/ch2-sect14-fillmissing}
+\include{ch2/ch2-sect15-toeplitzssa}
+\include{ch2/ch2-sect16-projssa}
+\include{ch2/ch2-sect17-iossafossa}
+\include{ch2/ch2-sect18-cadzowssa}
+\include{ch2/ch2-sect19-mssa}
+\include{ch2/ch2-sect20-2dssa}
+
+\chapter{ARIMA}
+
+\begin{itemize}
+\item AR(p) – модель, запись в виде с оператором сдвига
+\item AR(p) и модель сигнала в SSA
+\item Вид автоковариационной функции acf для AR(p)
+\item Вид pacf для AR(p)
+\item Модель MA(q), вид acf и pacf
+\item ARMA(p,q)
+\item Дифференцирование, ARIMA
+\item Seasonal ARIMA(p,d,q)(P,D,Q)
+\item Exponential smoothing, модели тренда, ES и ARIMA
+\end{itemize}
+
+\include{ch3/ch3-sect01-ar}
+\include{ch3/ch3-sect02-arssa}
+\include{ch3/ch3-sect03-aracf}
+\include{ch3/ch3-sect04-arpacf}
+\include{ch3/ch3-sect05-maacfpacf}
+\include{ch3/ch3-sect06-arma}
+\include{ch3/ch3-sect07-arima}
+\include{ch3/ch3-sect08-sarima}
+\include{ch3/ch3-sect09-esarima}
+
 \end{document}
 
