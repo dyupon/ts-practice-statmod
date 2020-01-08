@@ -1,1 +1,10 @@
 \section{ћодель MA(q), вид acf и pacf}
+
+ћодель скольз€щего среднего пор€дка $q$ определ€етс€ следующим образом
+$x_n = \varepsilon_n + \sum_{j=0}^{q} \theta_j\varepsilon_{n?j}$,
+где $\varepsilon_n$ - белый шум, $\theta_j$ - параметры модели.
+
+ѕредставление через оператор сдвига
+\[ x_n = (1 + \sum_{j=1}^{q} \theta_j L^j)\varepsilon_n = \Theta(L)\varepsilon_n. \]
+
+¬иды acf и pacf дл€ MA(q) по сравнению с AR(q) <<мен€ютс€ местами>>.
