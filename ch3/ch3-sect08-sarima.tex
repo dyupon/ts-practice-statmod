@@ -5,7 +5,7 @@
 Пусть частота сезонности равна $m$. Мы можем рассматривать $m$, например, как количество наблюдений за год. Тогда модель ARIMA с учетом сезонности будет выглядеть так:
 
 \begin{multline*} 
-(1 - \phi_1 L^  -  \phi_2 L^2- \ldots  - \phi_p L^p)(1 - \Phi_1 L^m - \Phi_2 L^{2m} - \ldots - \Phi_P L^{mP})(1 - L)^d(1 - L^m)^D x_n = \\ = c + (1+\theta_1 L + \theta_2 L^2+ \ldots +\theta_q L^q)(1+\Theta_1L^m+\Theta_2 L^{2m}+ \ldots +\Theta_Q L^{mQ})\varepsilon_n.
+(1 - \phi_1 L - \phi_2 L^2- \ldots  - \phi_p L^p)(1 - \Phi_1 L^m - \Phi_2 L^{2m} - \ldots - \Phi_P L^{mP})(1 - L)^d(1 - L^m)^D x_n = \\ = c + (1+\theta_1 L + \theta_2 L^2+ \ldots +\theta_q L^q)(1+\Theta_1L^m+\Theta_2 L^{2m}+ \ldots +\Theta_Q L^{mQ})\varepsilon_n.
 \end{multline*}
 
 Мы можем ввести сезонное дифференцирование: $(1 - L^m)x_n$. Если ряд один раз сезонно-дифферецируем, то такая операция сведет его к стационарному процессу. Если ряд имеет и сезонность, и тренд, то двойное дифференцирование $(1 - L)(1 - L^m)x_n$ приведет его к стационарному виду.
