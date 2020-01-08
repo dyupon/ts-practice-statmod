@@ -1,1 +1,24 @@
 \section{Метод разложения Classical seasonal decomposition}
+
+Рассматриваем аддитивную модель ряда:
+\begin{equation*}
+\mathsf{X}_{t}=\mathsf{T}_{t}+\mathsf{S}_{t}+ \mathsf{N}_{t}.
+\end{equation*}
+
+Зафиксируем период $p$ у сезонной компоненты $\mathsf{S}_{t}$. Шестишаговый алгоритм декомпозиции выглядит следующим образом:
+
+\begin{enumerate}
+	\item применяем скользящее среднее с длиной окна $p$, получаем оценку тренда $\widetilde{\mathsf{T}}_t$;
+	\item рассматриваем $\mathsf{X}_{t} - \widetilde{\mathsf{T}}_t$, получаем оценку $\widetilde{\mathsf{S}_{t} + \mathsf{N}_{t}}$;
+	\item $\widetilde{\mathsf{S}_{t} + \mathsf{N}_{t}}$ усредняется по периоду $p$: вычисляем средние для каждой $p$--ой точки. Получим среднее значение за каждый период. Выровняем эти значения так, чтобы их среднее равнялось нулю. Это и есть наша аппроксимация сезонности $\widetilde{\mathsf{S}_{t}}$;
+	\item рассматриваем $\mathsf{X}_{t} - \widetilde{\mathsf{S}_{t}}$ и получаем оценку $\widetilde{\mathsf{T}_{t} + \mathsf{N}_{t}}$;
+	\item применяем фильтр с небольшой длиной окна к $\widetilde{\mathsf{T}_{t} + \mathsf{N}_{t}}$ и получаем $\widetilde{\widetilde{\mathsf{T}}}_t$ (еще одну оценку тренда);
+	\item $\widetilde{\mathsf{N}_{t}} = \widetilde{\mathsf{T}_{t} + \mathsf{N}_{t}} - \widetilde{\widetilde{\mathsf{T}}}_t$.
+\end{enumerate}
+
+В результате получаем $\widetilde{\mathsf{N}_{t}}$, $\widetilde{\widetilde{\mathsf{T}}}_t$ и $\widetilde{\mathsf{S}_{t}}$. В $\texttt{R}$ эта процедура реализована в функции $\texttt{decompose}$. Результат её работы выглядит следующим образом: 
+
+\begin{figure}[H]
+	\center{\includegraphics[width=280pt, height=190pt]{decompose.png}}
+	\caption{Декомпозиция ряда на аддитивные составляющие}
+\end{figure}

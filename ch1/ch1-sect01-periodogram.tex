@@ -1,1 +1,16 @@
 \section{Периодограмма временного ряда}
+Пусть $\mathsf{X}$ --- ряд длины $N$. Рассмотрим ортогональный тригонометрический базис:
+$$\bigg\{ 1, \sin{ \Big( 2\pi\frac{x}{N}\cdot1 \Big) }, \cos{ \Big( 2\pi\frac{x}{N} \cdot 1 \Big) }, \ldots, \sin{ \Big( 2\pi\frac{x}{N} \cdot \Big\lfloor \frac{N}{2} \Big\rfloor \Big) }, \cos{ \Big( 2\pi\frac{x}{N} \cdot  \Big\lfloor \frac{N}{2} \Big\rfloor  \Big)} \bigg\},\ x \in Z$$
+
+Размер базиса равен $N$. Для $N = 2k + 1$ получим размер $1 + 2 \lfloor \frac{2k + 1}{2} \rfloor = 1 + 2k = N$. Для $N = 2k$ получим $1 + 2 \lfloor \frac{2k}{2} \rfloor = 1 + 2k = N + 1$, но последний синус будет иметь аргумент $2 \pi x$ при $x \in \mathbb Z$, поэтому равен нулю, а значит размер базиса равен $N$.
+
+Нам интересно разложить функцию ряда по этому базису, чтобы определить влияние конкретных частот на значения ряда.
+Пусть $$f(x): \big\{1, \ldots, N \big\} \rightarrow \mathbb{R}$$ функция, которая задаёт наш ряд. Нам известны значения этой функции, и мы хотим получить представение:
+$$f(x) = c_0 + \sum_{i=1}^{\lfloor \frac{N}{2} \rfloor}{c_i \cdot \cos{\Big( 2\pi \frac{x}{N}i \Big)} + s_i \cdot \sin{\Big(2\pi\frac{x}{N}i \Big)}},$$
+
+где $x \in \{1, \ldots, N\}$. Нахождение коэффицентов $\{c_i\},\{s_i\}$ можно рассмотреть как задачу регрессии. В результате мы получим функцию: 
+$$\Pi\Big( \frac{k}{N} \Big) =\frac{N}{2}\begin{cases} c_0^2 & \text{if k = 0} \\ c_\frac{N}{2}^2 & \text{if N is even and } k=\frac{N}{2} \\ c_k^2 + s_k^2 & \text{otherwise}\end{cases}$$
+
+Эта функция и есть \emph{периодограмма ряда}.
+
+В \texttt{R} периодограмму можно построить с помощью функции \texttt{spec.pgram}

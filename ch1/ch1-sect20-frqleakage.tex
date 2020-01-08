@@ -1,1 +1,24 @@
 \section{Растекание частоты в периодограмме и методы его устранения}
+
+Если длина ряда не будет кратна частоте периодики, то мы не сможем её выделить на графике, и получим растекание частоты (frequency leakage).
+
+Для примера рассмотрим ряд длиной $50$ точек: $y_i = \cos(\frac{2\pi x_i}{11})$. Построим его периодограмму:
+
+\begin{figure}[H]
+	\center{\includegraphics[width=280pt, height=190pt]{leakage.png}}
+	\caption{Периодограмма исходного ряда}
+\end{figure}
+
+Первый вариант: отрезать начальных точек так, чтобы длина ряда была кратна 11:
+
+\begin{figure}[H]
+	\center{\includegraphics[width=280pt, height=190pt]{leakagecorr1.png}}
+	\caption{Коррекция периодограммы}
+\end{figure}
+
+Второй вариант: добавить нулей так, чтобы длина ряда была кратна 11:
+
+\begin{figure}[H]
+	\center{\includegraphics[width=280pt, height=190pt]{leakagecorr2.png}}
+	\caption{Коррекция периодограммы}
+\end{figure}
