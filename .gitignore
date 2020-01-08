@@ -6,3 +6,9 @@ notes.synctex.gz
 notes.toc
 *.aux
 *.tex.aux
+ch1/*.aux
+ch1/*.tex.aux
+ch2/*.aux
+ch2/*.tex.aux
+ch3/*.aux
+ch3/*.tex.aux
