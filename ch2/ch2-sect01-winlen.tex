@@ -1,1 +1,51 @@
-\section{Как выбирать L}
+\section{Метод SSA. Выбор параметра L}
+
+Пусть есть временной ряд $\tsX$ длины $N > 2$, который является суммой нескольких временных рядов $(\tsX = \sum \tsX_k)$. Рассмотрим алгоритм SSA разложения временного ряда.
+
+\subsection{Первый этап: разложение}
+\subsubsection{Шаг 1. Вложение}
+На шаге вложения выбирается параметр $1 \leq L \leq N$, называемый \emph{длиной окна}. Затем к ряду $\tsX$ применяется \emph{оператор SSA-вложения}
+\begin{equation*}
+\opT_{\text{SSA}}^{(L)}(\tsX) = \mtX = [X_{1}:\ldots:X_{K}],
+\end{equation*}
+сопоставляющий временному ряду $\tsX$ его \emph{$L$-траекторную матрицу} $\mtX$, состоящую из $K = N - L + 1$ \emph{векторов вложения} $X_i = \left(x_{i-1},\ldots,x_{i+L-2}\right)\tr, \quad 1 \leq i \leq K$, имеющих размерность $L$. Обозначим $d = \rank \mtX$.
+
+\subsubsection{Шаг 2. Сингулярное разложение}
+На данном шаге происходит SVD (Singular Value Decomposition)~---~сингулярное разложение траекторной матрицы ряда. Обозначим $\mtS = \mtX\mtX\tr$, $\lambda_{1} \geq \ldots \geq \lambda_{L} \geq 0$~---~\emph{собственные числа} матрицы $\mtS$, $U_{1},\ldots,U_{L}$ --- ортонормированная система \emph{собственных векторов} матрицы $\mtS$, соответствующих $\lambda_{1},\ldots,\lambda_{L}$, $V_{i} = \mtX\tr U_{i}/\sqrt{\lambda_{i}}, \quad i \in \{ 1,\ldots,L \}, \lambda_i \neq 0$.
+
+Тогда результат сингулярного разложения~---~набор \emph{собственных троек}
+\begin{equation*}
+\SVD(\mtX) = \{ (\sqrt{\lambda_{i}}, U_{i}, V_{i}), \ i \in \{ 1,\ldots, L \} \}, \
+\mtX = \sum\limits_{i} \mtX_{i}, \
+\mtX_{i} = \sqrt{\lambda_{i}}U_{i}V_{i}\tr.
+\end{equation*}
+
+\subsection{Второй этап: восстановление}
+\subsubsection{Шаг 3. Группировка}
+\label{ssec:ssa_grouping}
+Введём $I = \{1, \ldots, d \}$~---~множество индексов ненулевых собственных чисел матрицы $\mathbf{S}$. Тогда на шаге группировки $I$ разбивается на непересекающиеся подгруппы \[ I = I_{1}\cup\ldots\cup I_{m}, \ I_{j} \cap I_{r} = \o \ \forall j, r \in \{1,\ldots,m\}, \ j \neq r, \] а траекторная матрица $\mtX$ представляется в виде
+\begin{equation*}
+\mtX = \mtX_{I_{1}} + \cdots + \mtX_{I_{m}}, \ \mtX_{I_{j}} = \sum\limits_{I_{j}} \mtX_{i}.
+\end{equation*}
+\subsubsection{Шаг 4. Диагональное усреднение}
+На данном шаге происходит две процедуры:
+\begin{enumerate}
+\item К каждой матрице сгруппированного разложения $\mtX_{I_{j}}$ применяется \emph{оператор ганкелизации} $\opH$, который усредняет матрицы $\mtX_{I_{j}}$ вдоль <<диагоналей>> $i + j = k + 2$, $0 \leq k < N$
+\begin{equation*}
+\opH(\mtX_{I_{j}}) = \widehat{\mtX}_{j}, \ j \in \{ 1, \ldots, m \}.
+\end{equation*}
+\item К матрицам $\widehat{\mtX}_{j}$ применяется оператор $(\opT_{\text{SSA}}^{(L)})^{-1}$, проводящий процедуру, обратную процедуре вложения
+\begin{equation*}
+(\opT_{\text{SSA}}^{(L)})^{-1}(\widehat{\mtX}_{j}) = \widetilde{\tsX}_{j} = (\tilde{x}_{0}^{(j)}, \ldots, \tilde{x}_{N-1}^{(j)}), \ j \in \{1, \ldots, m \}.
+\end{equation*}
+\end{enumerate}
+Таким образом получается разбиение исходного ряда в сумму $m$ рядов длины $N$
+\begin{equation*}
+\tsX = \sum\limits_{k=1}^m \widetilde{\tsX}_{n}^{(k)}.
+\end{equation*}
+
+Для выбора параметра $L$ существуют следующие рекомендации:
+\begin{itemize}
+\item В случае, если временной ряд $\tsX$ имеет период $m$, параметр $L$ стоит брать кратным $m$.
+\item Параметр $L$ стоит брать близким к половине длины ряда.
+\end{itemize}

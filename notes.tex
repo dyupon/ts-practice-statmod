@@ -23,8 +23,15 @@ left=3cm, right=1.5cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm]{geometry}
 
 \graphicspath{{fig/}}
 
+\newtheorem{statement}{Утверждение}
+\newtheorem{theorem}{Теорема}
+\newtheorem{remark}{Замечание}
+\newtheorem{definition}{Определение}
+
 %----------------------------------------------------------------
 \begin{document}
+
+\include{commands}
 
 %
 % Титульный лист на русском языке
@@ -36,8 +43,6 @@ left=3cm, right=1.5cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm]{geometry}
 	Прикладная математика и информатика \\
 	Статистическое моделирование
 }
-
-
 
 \title{Конспект}
 
@@ -138,7 +143,7 @@ left=3cm, right=1.5cm, top=2cm, bottom=2cm, headsep=1cm, footskip=1cm]{geometry}
 \item 2D-SSA для разложения изображения.
 \end{itemize}
 
-\include{ch2/ch2-sect01-winlen.tex}
+\include{ch2/ch2-sect01-winlen}
 \include{ch2/ch2-sect02-seqssa}
 \include{ch2/ch2-sect03-convergence}
 \include{ch2/ch2-sect04-compmessconv}
