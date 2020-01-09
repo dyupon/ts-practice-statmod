@@ -1,4 +1,4 @@
-
+	
 \section{Переход к разностям – плюсы и минусы (устранение тренда, превращение ряда в стационарный, усиление вклада высоких частот)}
 
 Плюсы: 
@@ -11,3 +11,14 @@
 \begin{itemize}
 	\item Увеличим вклад шума.
 \end{itemize}
+
+Рассмотрим белый шум $x_n$ --- н.о.р.с.в. с $\mathbb{E}x_i = 0$ и $\mathbb{D}x_i = \sigma^2$. Обозначим $y_n = x_{n} - x_{n+1}$ --- ряд, где перешли к разностям. Тогда:
+
+\begin{equation*}
+\mathbb{E}(x_n - x_{n+1})(x_{n+1} - x_{n+2}) = - \mathbb{E}x_{n+1}^2 ,
+\end{equation*}
+поскольку в силу независимости $\mathbb{E}x_n x_{n+2} = \mathbb{E}x_{n}x_{n+1} = \mathbb{E}x_{n+1}x_{n+2} = 0.$ Кроме того, $\mathbb{E}x_{n+1}^2 = \mathbb{D}x_{n+1} = \sigma^2$. Тогда $\text{cov}(y_n, y_{n+1}) = -\sigma^2$. Дисперсия из тех же соображений:
+\begin{equation*}
+ \mathbb{D}y_n =  \mathbb{E}(x_n - x_{n+1})^2 =  \mathbb{E}x_n^2 +  \mathbb{E} x_{n+1}^2 -  \mathbb{E}x_n x_{n+1} -  \mathbb{E}x_{n+1} x_n = 2\sigma^2.
+\end{equation*}
+Тогда $\rho(y_n, y_{n+1}) = -1/2$.

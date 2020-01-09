@@ -31,3 +31,24 @@ W(z)=\left\{\begin{aligned}
 \end{figure}
 
 Видим, что как и визуально на графике, так и с точки зрения периодограммы, тренд выделился хорошо.
+
+Рассмотрим также выделение тренда с помощью фильтра Холдрика--Прескотта (Hodrick-- Prescott filter). Решается следующая оптимизационная задача: 
+
+$$\sum_{i = 1}^{N}(\mathsf{X}_i - s_i)^2 - \lambda \sum_{i=2}^{N-2}((s_{i+1} - s_i) - (s_i - s_{i-1}))^2 \rightarrow \underset{\{s_i\}}{\min}$$
+
+Здесь под $s_i$ подразумевается тренд. Эмпирическая рекомендация: если период составляет $p = 12$, то $\lambda = 129606$.
+
+Результат применения:
+
+
+\begin{figure}[H]
+	\center{\includegraphics[width=280pt, height=190pt]{hp.png}}
+	\caption{Выделение тренда с помощью HP--filter}
+\end{figure}
+
+Смотрим на периодограмму остатка: 
+
+\begin{figure}[H]
+	\center{\includegraphics[width=280pt, height=190pt]{spechp.png}}
+	\caption{Выделение тренда с помощью HP--filter}
+\end{figure}
